@@ -2,8 +2,8 @@ sasha:
     espeak: /usr/bin/espeak -v swedish
 
 pyvonna:
-    user_key: XXXXXXXXXXXXXXXXXXXX
-    cert_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    user_key: GDNAID2S3BMA3DVBHUMQ
+    cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
 
 tellstick:
@@ -11,7 +11,7 @@ tellstick:
     ebbas vardagsrumlampa av: ssh life /usr/bin/tdtool --off ebbastält
 
 translate:
-    google_api_key: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    google_api_key: AIzaSyAk5O0UkWrhyb7JhZLMwSnqD_FtghXhiTU
 
 wolframalpha:
-    alpha_api_key: XXXXXX-XXXXXXXXXX
+    alpha_api_key: T75KQ9-PEAV67VPT8
