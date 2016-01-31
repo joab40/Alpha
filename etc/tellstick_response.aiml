@@ -1,0 +1,139 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+
+    <category>
+        <pattern>SLÄCK * EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK  EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCK * EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA * EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK EBBA *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA EBBA *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK TÄLTET</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK TÄLT</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCKA TÄLTET</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK TÄLT *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA EBBAS *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCK TÄLT *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCK TÄLTET *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SLÄCKA TÄLTET *</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+    <category>
+        <pattern>SLÄCK TÄLT</pattern>
+        <template>
+            ebbas vardagsrumlampa av
+        </template>
+    </category>
+
+
+</aiml>

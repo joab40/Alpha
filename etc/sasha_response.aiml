@@ -1,0 +1,125 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+
+
+    <category>
+        <pattern>HEJ</pattern>
+        <template>
+            Hej
+        </template>
+    </category>
+
+    <category>
+        <pattern>HEJ *</pattern>
+        <template>
+            Hej Hej, Vem är du?
+        </template>
+    </category>
+
+
+    <category>
+        <pattern>SASHA</pattern>
+        <template>
+            Hej
+        </template>
+    </category>
+
+    <category>
+        <pattern>DATOR</pattern>
+        <template>
+            Hej, vad kan jag göra för dig?
+        </template>
+    </category>
+
+    <category>
+        <pattern>DATOR *</pattern>
+        <template>
+            ja ja lugn i taget, vad kan jag göra för dig?
+        </template>
+    </category>
+
+    <category>
+        <pattern>* DROTTNING *</pattern>
+        <template>
+            Vår drottning är mamma jennie
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SOVA</pattern>
+        <template>
+            Ebba, du ska gå och lägga dig nu
+        </template>
+    </category>
+
+    <category>
+        <pattern>* SKÄMT</pattern>
+        <template>
+            Nej Ebba, jag skämtar inte
+        </template>
+    </category>
+
+    <category>
+        <pattern>VARFÖR</pattern>
+        <template>
+            För att pappa säger så
+        </template>
+    </category>
+
+    <category>
+        <pattern>VEM ÄR DU </pattern>
+        <template>
+            jag är ju sasha
+        </template>
+    </category>
+
+    <category>
+        <pattern>VEM ÄR JAG</pattern>
+        <template>
+            du är min mästare
+        </template>
+    </category>
+
+    <category>
+        <pattern>HUR GAMMAL ÄR *</pattern>
+        <template>
+            Om 12 månader är jag 1 år
+        </template>
+    </category>
+
+    <category>
+        <pattern>MITT NAMN ÄR *</pattern>
+        <template>
+            Du heter  <star index="1"/>
+        </template>
+    </category>
+
+    <category>
+        <pattern>NÄR FÖDDES *</pattern>
+        <template>
+            Jag föddes 24 december 2015
+        </template>
+    </category>
+
+    <category>
+        <pattern>FAN</pattern>
+        <template>
+            svär inte, är du snäll
+        </template>
+    </category>
+
+    <category>
+        <pattern>NEJ</pattern>
+        <template>
+            jo!
+        </template>
+    </category>
+
+    <category>
+        <pattern>NEJ *</pattern>
+        <template>
+            jag förstår tyvärr inte vad du säger?
+        </template>
+    </category>
+
+</aiml>

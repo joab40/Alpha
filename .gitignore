@@ -1,0 +1,5 @@
+*.pyc
+bin/*.pyc
+etc/*.pyc
+etc/alph_config.yml
+
