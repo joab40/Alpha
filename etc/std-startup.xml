@@ -13,6 +13,7 @@
         <template>
             <learn>../etc/sasha_response.aiml</learn>
             <learn>../etc/tellstick_response.aiml</learn>
+            <learn>../etc/tellstick_ebba.aiml</learn>
             <learn>../etc/learn.aiml</learn>
             <!-- You can add more aiml files here -->
             <!--<learn>more_aiml.aiml</learn>-->

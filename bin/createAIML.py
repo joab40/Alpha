@@ -1,4 +1,4 @@
-#!/produkter/gnu/python/bin/python
+#!/usr/bin/python
 # -*- coding: iso-8859-15 -*-
 # ./islay_of_mist.py -d INFO -i g700 -c STATUS
 
@@ -37,6 +37,7 @@ def create_template_category(pattern,alicesays):
     file_template.append('        <template>')
     file_template.append('            ' + alicesays)
     file_template.append('        </template>')
+    file_template.append('    </category>')
 
 
 def create_aiml_file(fil,alicesays):

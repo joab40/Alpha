@@ -1,0 +1,93 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+    <category>
+        <pattern>TäND * TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>* TÄNDA EBBAS *</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>* SLå På * TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND EBBAS *</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND EBBAS TäLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>SLÅ På * TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>SLÅ På TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>EBBAS TÄLT *</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND TÄLTET</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>SLÅ På EBBAS TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>SLÅ På EBBAS *</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND TÄLTET</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>TÄND TÄLTET *</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>AKTIVERA * TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+</aiml>

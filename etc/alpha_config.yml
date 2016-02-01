@@ -9,6 +9,7 @@ pyvonna:
 tellstick:
     tellsticktemp: ssh life /usr/local/bin/temperatur.sh
     ebbas vardagsrumlampa av: ssh life /usr/bin/tdtool --off ebbastält
+    aktiverar ebbas lampa: ssh life /usr/bin/tdtool --on ebbastält
 
 translate:
     google_api_key: AIzaSyAk5O0UkWrhyb7JhZLMwSnqD_FtghXhiTU
