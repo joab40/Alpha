@@ -16,3 +16,10 @@ translate:
 
 wolframalpha:
     alpha_api_key: T75KQ9-PEAV67VPT8
+
+keylemon:
+    config:
+        user_key: joab40
+        keylemon_api_key: 1tBdvyJOPy5gl9ivADIzITfdKGrptpv395GVU1hDb0Nff2Ntvxrydm
+    model:
+        johan: 04da8e8c-624a-4977-b048-6f7d95e15ca8

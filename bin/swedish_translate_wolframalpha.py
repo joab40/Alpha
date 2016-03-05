@@ -12,7 +12,7 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 basepath = os.path.dirname(os.path.abspath(__file__))
-ymlfile = basepath + "/../etc/sasha_config.yml"
+ymlfile = basepath + "/../etc/alpha_config.yml"
 libpath = basepath + "/../lib/"
 
 if libpath not in sys.path:
