@@ -1,4 +1,21 @@
 README
+
+ Rasberry Pi Setup:
+ Base setup dep:
+ pip install aiml
+ pip install SpeechRecognition
+ pip install pyvona
+ pip install pyyaml
+ extra:
+ (FAILED) pip install pyaudio
+    Min req. version 2.9
+    - sudo apt-get install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
+    - sudo apt-get install python-dev
+    - git clone http://people.csail.mit.edu/hubert/git/pyaudio.git
+    - sudo python pyaudio/setup.py install
+
+ pip install wolframalpha
+
  Alpha, smart home AI. 
  sasha - My doughters imaginary friend "Chacha"
 
