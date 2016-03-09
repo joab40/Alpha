@@ -1,12 +1,44 @@
-README
+# Alpha
+Alpha alias sasha aka chacha is a Smart AI (aiml) chatterbot build in Python, which have several supported api / webservice dependencies.
+In a near future Alpha will be hosted a RaspberryPi inserted in a robotic head.
+
+### API Connections
+#### Working OK
+    - google speech STT API (SpeechRecognition)
+    - google translate API
+    - Pyvona API TTS
+    - TelldusCenter "Tellstick" bourne shell scripts (Not inkluded) 
+#### In progress ! Unstable
+    - Raspberry PI GPIO (robotic motor and lights for the head)
+    - Face and Voice recognition (RaspberryPI)
+    - WebeHome (Home Security - webservice support)
+    
+## How it works
+Advantages or disadvantages alpha is highly dependent on web services . Which may result in reduced privacy and security of a smart home solution.
+
+## Installation
+Unfortunately there is no boundle installation scripts available.
+For Raspbarry se README in raspberrypi catalog
+
+## Supported "verified" Hardware
+ - Raspberry PI 2
+ - Kinobo - "AKIRO" USB Microphone
+ - DM500USB Microphone 
+
+## Supported "verified" Software
+
+## Inspired by
+Alpha is pre name sascha. Is 
+
 
  Rasberry Pi Setup:
  Base setup dep:
- pip install aiml
- pip install SpeechRecognition
- pip install pyvona
- pip install pyyaml
-
+```sh
+pip install aiml
+pip install SpeechRecognition
+pip install pyvona
+pip install pyyaml
+```
  extra:
  (FAILED) pip install pyaudio
     Min req. version 2.9
@@ -23,7 +55,6 @@ README
     - record from MIC: arecord -f S16_LE -D hw:1,0 -r 48000 test.wav
 	- change hardware mic adress sudo vi /lib/modprobe.d/aliases.conf
 
-        CONFIG:
 
 sudo modprobe snd_bcm2835
 
@@ -43,4 +74,5 @@ sudo modprobe snd_bcm2835
  YAML for reading config files
  -> install: pip install pyyaml
  API pip install wolframalpha -> https://pypi.python.org/pypi/wolframalpha
+
 
