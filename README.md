@@ -2,6 +2,10 @@
 Alpha alias sasha aka chacha is a Smart AI (aiml) chatterbot build in Python, which have several supported api / webservice dependencies.
 In a near future Alpha will be hosted a RaspberryPi inserted in a robotic head.
 
+### How it works
+The main core of the project is avoid subscribe to information that you do not need. To get the information when you want it.
+And by words or phrases describe a specific or unique call instead of being dependent on a single word or command to make that call. For example, say, "honey can you please turn off the kitchen light"  Or next time you say. "Can someone turn the light off in the kitchen for God's sake" Advantages or disadvantages alpha is highly dependent on web services . Which may result in reduced privacy and security in a smart home solution. 
+
 ### API Connections
 #### Working OK
     - google speech STT API (SpeechRecognition)
@@ -15,9 +19,6 @@ In a near future Alpha will be hosted a RaspberryPi inserted in a robotic head.
     - Wolframalpha API
     
     
-## How it works
-The main core of the project is avoid subscribe to information that you do not need . But to get the information when you want it.
-And by words or phrases describe a specific or unique call instead of being dependent on a single word or command to make that call. For example, say, "honey can you please turn off the kitchen light"  Or next time. "Can someone turn the light in the kitchen for God's sake" Advantages or disadvantages alpha is highly dependent on web services . Which may result in reduced privacy and security in a smart home solution. 
 
 ## Installation
 Unfortunately there is no boundle installation scripts available. (WORKING ON IT)
