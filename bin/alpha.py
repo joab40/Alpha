@@ -39,7 +39,10 @@ def run_sasha(onlytextoption):
 
         else:
             r = sr.Recognizer()
-            with sr.Microphone() as source:
+            # Ubuntu Linux default soundcard and MIC
+            # with sr.Microphone() as source:
+            # RaspberryPi default soundcard 0 and Usb MIC 3
+            with sr.Microphone(device_index = 3, sample_rate = 16000, chunk_size = 1024) as source:
                 print("Say something!")
                 logger.warning("sasha              - Say Something!            [\033[0;31mWAITING\033[0m] ")
 

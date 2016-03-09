@@ -1,0 +1,44 @@
+
+Tested:
+	- Raspberry Pi 2
+OS:
+	- RASPBIAN JESSIE LITE 
+Firmware:
+	- Latest sudo rpi-update (20150309)
+		- 8263022d59f18596ee7f4779affe620311e56862
+
+Package(apt-get)
+	- python-pygame (pyvonna)
+	- flac
+	- libportaudio0
+	- libportaudio2
+	- libportaudiocpp0
+	- portaudio19-dev
+	- python-dev
+
+Python modules(pip install)
+    - aiml
+    - SpeechRecognition
+    - pyvona
+    - pyyaml
+    - wolframalpha
+
+SoundConfig RaspberryPi
+    - Internal soundcard 3.5mm
+    - USB Mic (none driver)
+    - ~/.asoundrc (look in this directory)
+    - sudo sed -i.bak -e's/defaults.pcm.card 0/defaults.pcm.card 1/' /usr/share/alsa/alsa.conf (not sure)
+    - hw_list.py (show default soundcard index and USB Mic
+    - sr.Microphone(device_index = !? depends. default on raspberry pi 2 jessie debian == 3 (USB MIC)
+
+Verify:
+    - Record
+        : arecord -f S16_LE -D hw:1,0 -r 48000 test.wav
+    - Play
+        : arecord test.wav
+    - alsamixer(conig)
+        : mic gain Zero
+    - Soundcard
+        : sudo modprobe snd_bcm2835 (if soundcard missing)
+    - Rsync
+        : rsync -avz Alpha pi@pi:/home/pi/

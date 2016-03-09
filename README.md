@@ -6,6 +6,7 @@ README
  pip install SpeechRecognition
  pip install pyvona
  pip install pyyaml
+
  extra:
  (FAILED) pip install pyaudio
     Min req. version 2.9
@@ -13,6 +14,18 @@ README
     - sudo apt-get install python-dev
     - git clone http://people.csail.mit.edu/hubert/git/pyaudio.git
     - sudo python pyaudio/setup.py install
+
+    apt-get install python-pygame (pyvonna)
+    apt-get install flac (raspberry)
+
+ DM500 USB MIC
+    - sudo apt-get install alsa-utils mpg321
+    - record from MIC: arecord -f S16_LE -D hw:1,0 -r 48000 test.wav
+	- change hardware mic adress sudo vi /lib/modprobe.d/aliases.conf
+
+        CONFIG:
+
+sudo modprobe snd_bcm2835
 
  pip install wolframalpha
 
