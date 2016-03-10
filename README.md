@@ -1,3 +1,4 @@
+![Alpha](https://raw.githubusercontent.com/joab40/Alpha/master/share/images/logo.png)
 # Alpha
 Alpha alias sasha aka chacha is a Smart AI (aiml) chatterbot build in Python, which have several supported api / webservice dependencies.
 In a near future Alpha will be hosted a RaspberryPi inserted in a robotic head.
