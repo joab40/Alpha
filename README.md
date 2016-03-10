@@ -26,7 +26,7 @@ And by words or phrases describe a specific or unique call instead of being depe
 Unfortunately there is no boundle installation scripts available. (WORKING ON IT)
 At the moment, for more info regarding Raspbarry PI. Se README in raspberrypi catalog
 ```sh
-git clone http://github.com/joab40
+git clone http://github.com/joab40/Alpha
 ```
 
 #### Rasberry Pi Setup:
