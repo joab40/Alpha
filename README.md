@@ -9,8 +9,9 @@ And by words or phrases describe a specific or unique call instead of being depe
 
 ### API Connections
 #### Working OK
-    - google speech STT API (SpeechRecognition)
-    - google translate API (Because default language is Swedish)
+    - Chatbot AIML
+    - Google speech STT API (SpeechRecognition)
+    - Google translate API (Because default language is Swedish)
     - Pyvona API TTS
     - TelldusCenter "Tellstick" bourne shell scripts (Not included) 
 #### In progress ! Unstable
