@@ -19,6 +19,18 @@
         </template>
     </category>
     <category>
+        <pattern>* TÄLT</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
+        <pattern>* TÄLTET</pattern>
+        <template>
+            aktiverar ebbas lampa
+        </template>
+    </category>
+    <category>
         <pattern>TÄND EBBAS *</pattern>
         <template>
             aktiverar ebbas lampa
