@@ -21,9 +21,15 @@ libpath = basepath + "/../lib/"
 
 if libpath not in sys.path:
         sys.path.insert(1, libpath)
-print "test"
 import led_class
-print "test2"
+
+try:
+        import translator_class
+except ImportError:
+        print "libpath could be wrong, please check/verify translator_class in %s: ", libpath
+        exit(1)
+
+
 def readyaml(yfile):
     logger.info("readyaml             - read yaml file            [\033[0;32mREAD\033[0m] on admin on host: %s ", yfile)
     # Add check for file exist/read
@@ -80,7 +86,20 @@ def run_sasha(onlytextoption,onlytexttospeech):
             kernel.saveBrain("bot_brain.brn")
         else:
             bot_response = kernel.respond(message)
-            print bot_response
+            #print "sasha: ",bot_response
+            if not bot_response:
+                if yconfig['bot']['alice']:
+                    if yconfig['bot']['translate']:
+                        message = translate.svtoen(message)
+                        print "Meddelande på engelska: ", message
+
+                    bot_response = alicekernel.respond(message)
+                    if bot_response:
+                        if yconfig['bot']['translate']:
+                            print "alice says", bot_response
+                            bot_response = translate.entosv(bot_response)
+                            print "alice säger: ", bot_response
+
             if bot_response:
                 try:
                     tellstick_cmd = yconfig['tellstick'][bot_response]
@@ -116,7 +135,6 @@ if __name__ == '__main__':
         parser.add_argument('-d', '--loglevel',default='', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL' ], help='Default WARNING')
         parser.add_argument('-f', '--logfile', default='', help='Path to Logfile')
         args = parser.parse_args()
-        print "test3"
         if args.logfile:
             numeric_level = getattr(logging, args.loglevel.upper(), None)
             FORMAT = '%(asctime)-15s %(levelname)s    - %(name)s - %(message)s'
@@ -127,10 +145,8 @@ if __name__ == '__main__':
             FORMAT = '%(asctime)-15s %(levelname)s    - %(name)s - %(message)s'
             logging.basicConfig(format=FORMAT,level=numeric_level)
             logger = logging.getLogger('Islay Of Mist')
-        print "test4"
         logger.debug("__main__: Starting ervers: %s ",Version)
 
-        print "faan"
         try:
             # Read Configurations yaml config file
             yconfig = readyaml(ymlfile)
@@ -144,8 +160,17 @@ if __name__ == '__main__':
 
         # Create the kernel and learn AIML files
         kernel = aiml.Kernel()
-        kernel.learn("../etc/std-startup.xml")
-        kernel.respond("load aiml b")
+
+
+        kernel.learn("../etc/std-alpha.xml")
+        kernel.respond("load aiml t")
+        if yconfig['bot']['alice']:
+            alicekernel = aiml.Kernel()
+            alicekernel.learn("../etc/std-alice.xml")
+            alicekernel.respond("load aiml alice")
+            if yconfig['bot']['translate']:
+
+                translate = translator_class.translator(yconfig['translate']['api_key'],yconfig['translate']['service'])
 
         ESPEAK = "/usr/bin/espeak -v swedish "
         ONTELLSTICKTEST = "ssh life " + "'" + "/usr/bin/tdtool --on vardagsrum" + "'"

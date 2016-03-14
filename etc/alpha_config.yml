@@ -1,6 +1,11 @@
 sasha:
     espeak: /usr/bin/espeak -v swedish
 
+# Translate
+#yandex:
+#    api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
+
+# TTS
 pyvonna:
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
@@ -11,12 +16,18 @@ tellstick:
     ebbas vardagsrumlampa av: ssh joab40@life /usr/bin/tdtool --off ebbastält
     aktiverar ebbas lampa: ssh joab40@life /usr/bin/tdtool --on ebbastält
 
+# Mainly for translation en-sv sv-en
 translate:
+    #service: google
+    service: yandex
+    api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
     google_api_key: AIzaSyAk5O0UkWrhyb7JhZLMwSnqD_FtghXhiTU
 
+# Ask internet
 wolframalpha:
     alpha_api_key: T75KQ9-PEAV67VPT8
 
+# Face and Voice Reqognition
 keylemon:
     config:
         user_key: joab40
@@ -24,9 +35,15 @@ keylemon:
     model:
         johan: 04da8e8c-624a-4977-b048-6f7d95e15ca8
 
+# Raspberry PI output. led and motor
 gpio:
-    raspberrypi: True
+    raspberrypi: False
     green: 18
     blue: 18
     yellow: 23
     red: 24
+
+# Enable Alice-bot as secondery chatbot
+bot:
+    alice: True
+    translate: True
