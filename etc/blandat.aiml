@@ -1,0 +1,153 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+    <category>
+        <pattern>HUNGRIG *</pattern>
+        <template>
+            Jag brukar inte äta så ofta, men du kan ta något ur kylen
+        </template>
+    </category>
+    <category>
+        <pattern>* HUNGRIG</pattern>
+        <template>
+            Jag brukar inte äta så ofta, men du kan ta något ur kylen
+        </template>
+    </category>
+    <category>
+        <pattern>HUNGRIG</pattern>
+        <template>
+            Jag brukar inte äta så ofta, men du kan ta något ur kylen
+        </template>
+    </category>
+    <category>
+        <pattern>* HUNGRA *</pattern>
+        <template>
+            Bäst att du går och äter något
+        </template>
+    </category>
+    <category>
+        <pattern>* HUNGRAR *</pattern>
+        <template>
+            Bäst att du går och äter något
+        </template>
+    </category>
+    <category>
+        <pattern>* VET *</pattern>
+        <template>
+            Jag vet inte svaret på den frågan
+        </template>
+    </category>
+    <category>
+        <pattern>VET *</pattern>
+        <template>
+            Jag vet inte svaret på den frågan
+        </template>
+    </category>
+    <category>
+        <pattern>KAN *</pattern>
+        <template>
+            Jag kan hjälpa till ibland, men inte det du frågar om
+        </template>
+    </category>
+    <category>
+        <pattern>NÄR *</pattern>
+        <template>
+            När är svårt att säga, fråga pappa
+        </template>
+    </category>
+    <category>
+        <pattern>* NÄR *</pattern>
+        <template>
+            När är svårt att säga, fråga pappa
+        </template>
+    </category>
+    <category>
+        <pattern>* ÄR *</pattern>
+        <template>
+            Jag vet inte vad är innebär, fråga Mamma
+        </template>
+    </category>
+    <category>
+        <pattern>ÄR *</pattern>
+        <template>
+            Jag vet inte vad är innebär, fråga Mamma
+        </template>
+    </category>
+    <category>
+        <pattern>* KLOCKAN *</pattern>
+        <template>
+            Jag har ingen klocka, du kanske kan berätta för mig vad tiden är
+        </template>
+    </category>
+    <category>
+        <pattern>KLOCKA *</pattern>
+        <template>
+            Jag har ingen klocka, du kanske kan berätta för mig vad tiden är
+        </template>
+    </category>
+    <category>
+        <pattern>* KLOCKAN</pattern>
+        <template>
+            Jag har ingen klocka, du kanske kan berätta för mig vad tiden är
+        </template>
+    </category>
+    <category>
+        <pattern>* KLOCKA</pattern>
+        <template>
+            Jag tror han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern></pattern>
+        <template>
+            Jag trorn han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern>* KATT *</pattern>
+        <template>
+            Jag tror han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern>* KATT</pattern>
+        <template>
+            Jag tror han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern>* TANGO</pattern>
+        <template>
+            Tack, jag ska försöka komma ihåg att våran katt heter tango
+        </template>
+    </category>
+    <category>
+        <pattern>* PAPPA</pattern>
+        <template>
+            papppa är starkast i världen
+        </template>
+    </category>
+    <category>
+        <pattern>* PAPPA *</pattern>
+        <template>
+            papppa är starkast i världen
+        </template>
+    </category>
+    <category>
+        <pattern>PAPPA</pattern>
+        <template>
+            papppa är starkast i världen
+        </template>
+    </category>
+    <category>
+        <pattern>* PANSAR *</pattern>
+        <template>
+            papppa är starkare än pansar
+        </template>
+    </category>
+    <category>
+        <pattern>* PANSAR</pattern>
+        <template>
+            papppa är starkare än pansar
+        </template>
+    </category>
+</aiml>

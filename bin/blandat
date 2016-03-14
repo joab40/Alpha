@@ -1,0 +1,33 @@
+<aiml version="1.0.1" encoding="UTF-8">
+<!-- basic_chat.aiml -->
+    <category>
+        <pattern>* KLOCKAN *</pattern>
+        <template>
+            Jag har ingen klocka, du kanske kan berätta för mig vad tiden är
+        </template>
+    </category>
+    <category>
+        <pattern>KLOCKA *</pattern>
+        <template>
+            Jag har ingen klocka, du kanske kan berätta för mig vad tiden är
+        </template>
+    </category>
+    <category>
+        <pattern>* KLOCKA</pattern>
+        <template>
+            Jag trorn han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern></pattern>
+        <template>
+            Jag trorn han heter tango
+        </template>
+    </category>
+    <category>
+        <pattern></pattern>
+        <template>
+            Jag trorn han heter tango
+        </template>
+    </category>
+</aiml>
