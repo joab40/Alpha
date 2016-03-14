@@ -12,7 +12,9 @@ And by words or phrases describe a specific or unique call instead of being depe
     - Chatbot AIML
     - Google speech STT API (SpeechRecognition)
     - Google translate API (Because default language is Swedish)
+    - Yandex translate API
     - Pyvona API TTS
+    - espeak TTS
     - TelldusCenter "Tellstick" bourne shell scripts (Not included) 
 #### In progress ! Unstable
     - Raspberry PI GPIO (robotic motor and lights for the head)
@@ -47,6 +49,7 @@ pip install aiml
 pip install SpeechRecognition
 pip install pyvona
 pip install pyyaml
+pip install yandex
 ```
 ## Running (Run)
 #### Basic
