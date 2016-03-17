@@ -15,6 +15,7 @@ Package(apt-get)
 	- libportaudiocpp0
 	- portaudio19-dev
 	- python-dev
+	- mosquitto (mqtt)
 
 Python modules(pip install)
     - aiml
@@ -22,6 +23,7 @@ Python modules(pip install)
     - pyvona
     - pyyaml
     - wolframalpha
+    - paho-mqtt
 
 SoundConfig RaspberryPi
     - Internal soundcard 3.5mm
