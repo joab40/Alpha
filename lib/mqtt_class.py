@@ -11,8 +11,6 @@ import json
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
-
 class alphamqtt(object):
     def __init__(self,broker,brokerport, topic):
         # creating object
@@ -37,8 +35,8 @@ class alphamqtt(object):
 
 
 
-test = alphamqtt('localhost','1883','alphahead')
-test.pub('333')
+#test = alphamqtt('localhost','1883','alphahead')
+#test.pub('333')
 #time.sleep(1)
 #test.off()
 # test.off()

@@ -11,7 +11,7 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
   #print msg.topic + " " + str(msg.payload)
-  #decode = json.loads(msg.payload)
+  decode = json.loads(msg.payload)
   print decode['xcord']
 
   #time.sleep(3)
