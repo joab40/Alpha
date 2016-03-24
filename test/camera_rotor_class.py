@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import os
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -13,7 +14,7 @@ class camera_rotor(object):
         self.x_end = end
         self.x_middle = self.x_end / 2
         self.x_focus = 0
-        # Set last known focus to middle at start.
+        # Set last known focus to middle at start. that initiated a movement
         self.x_last_focus = self.x_end - self.x_begin
         # If rotation is accepted. This is how much we rotate
         self.x_moves = 0
@@ -22,7 +23,13 @@ class camera_rotor(object):
         self.x_tolerance = 20
         # Tolerance pixels movement accepted at most defined by self.x_tolerance %
         self.x_pixel_tolerance = self.whatispercentageofwhole(self.x_tolerance, self.x_end)
+        # SERVOBLASTER
+        self.cam_middle = 50
+        self.cam_focus = self.cam_middle
+
         print self.x_pixel_tolerance
+
+    def camrotate(self):
 
 
     def calculate(self, focus):
@@ -41,7 +48,7 @@ class camera_rotor(object):
 # 640*400
 test = camera_rotor(0,640)
 # Input focus
-testout = test.calculate(220)
+testout = test.calculate(150)
 #testout = test.svtoen('hej')
 #test.print_translated_message()
 #test.entosv("who are you")

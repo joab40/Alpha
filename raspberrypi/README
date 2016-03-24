@@ -44,3 +44,26 @@ Verify:
         : sudo modprobe snd_bcm2835 (if soundcard missing)
     - Rsync
         : rsync -avz Alpha pi@pi:/home/pi/
+
+Installing Servoblaster:
+1. git clone /github.com/richardghirst/PiBits.git 
+2. cd PiBits/ServoBlaster/user 
+3. make 
+4. sudo make install 
+5. Verify that servoblaster is installed: ls /dev/servoblaster
+
+sudo motion -n (console mode)
+
+
+cam 320 -> 150 alt 50
+cam 600 -> 250 alt 100
+ska vara:
+cam 600 ->
+
+
+
+
+
+
+
+
