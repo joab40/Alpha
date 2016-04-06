@@ -54,6 +54,10 @@ Installing Servoblaster:
 
 sudo motion -n (console mode)
 
+sudo servod status
+sudo servod --p1pins=13
+#center
+sudo echo 0=150 > /dev/servoblaster
 
 cam 320 -> 150 alt 50
 cam 600 -> 250 alt 100
