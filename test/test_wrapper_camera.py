@@ -25,10 +25,18 @@ if __name__ == '__main__':
 # Input focus
     testa = test.focus(450)
     testa = test.focus(550)
-    testa = test.focus(250)
-    testa = test.focus(450)
-    testa = test.focus(10)
-    testa = test.focus(450)
+    testa = test.focus(320)
+    testa = test.focus(320)
+    testa = test.focus(220)
+    testa = test.focus(210)
+    testa = test.focus(180)
+    testa = test.focus(160)
+    testa = test.focus(140)
+    testa = test.focus(100)
+    testa = test.focus(50)
+
+    #testa = test.focus(320)
+    #testa = test.focus(320)
 
     #test = test.focus(310)
 #testout = test.svtoen('hej')

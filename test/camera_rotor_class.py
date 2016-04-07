@@ -27,14 +27,19 @@ class camera_rotor(object):
         # Zones
         self.cam_zones = 5
         # Center zone to middle
-        self.cam_zone = 3
+        self.cam_zone_middle = 3
+        self.cam_zone = self.cam_zone_middle
+        self.cam_last_known_zone = self.cam_zone
         # ex 640 / 5
         self.cam_zone_sizes = self.x_end / self.cam_zones
         # SERVOBLASTER
         self.servo_middle = 50
         self.servo_focus = self.servo_middle
+        self.servo_last_known_focus = self.servo_focus
         self.servo_zone_sizes = 100 / self.cam_zones
-
+        # Prevent servo to rotate more or less 0%-100%
+        self.servo_cam_focus_zone_procent = 50
+        print "cam zone sizes: ",self.cam_zone_sizes
 
         #print self.x_pixel_tolerance
 
@@ -44,25 +49,43 @@ class camera_rotor(object):
     def focus(self, xfocus):
         self.x_focus = xfocus
         self.x_last_focus = self.x_focus
-        print self.cam_zone_sizes
-        self.findzone()
-        self.move_servo_to_zone()
+
+        self.in_the_zone = self.findzone()
+        if self.in_the_zone is not self.cam_zone_middle:
+            self.move_servo_to_zone()
+        else:
+            print "FOCUS: dont move servomotor: ", self.cam_zone_middle
+            print "FOCUS: servo procent moved : ", self.servo_cam_focus_zone_procent
+
         return self.x_moves
 
     def findzone(self):
-        print "zone"
+        #print "zone"
         select_xone = 1
         while select_xone <= self.cam_zones:
             #print "debug ", self.x_focus, select_xone, self.cam_zone_sizes, select_xone * self.cam_zone_sizes
             if self.x_focus < select_xone * self.cam_zone_sizes:
-                print "Found zone ", select_xone
+                print "findzone: FOUND zone(!): ", select_xone
                 self.cam_zone = select_xone
+                return select_xone
                 break
             select_xone += 1
 
     def move_servo_to_zone(self):
-        print "DEBUG: servo precent focus: ", self.servo_focus
-        print "DEBUG: Move servo to: ", self.servo_zone_sizes * self.cam_zone - (self.servo_zone_sizes / 2)
+        print "move_servo_to_zone: servo precent focus: ", self.servo_focus
+        #print "move_servo_to_zone: Move servo to: ", self.servo_zone_sizes * self.cam_zone - (self.servo_zone_sizes / 2)
+        #print "procent movement: ",
+        if self.cam_last_known_zone > self.cam_zone and self.servo_cam_focus_zone_procent > 15:
+            print "LEFT: ", self.cam_last_known_zone, self.cam_zone
+            print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
+            self.servo_cam_focus_zone_procent -=10
+            print "step left 10%", self.servo_cam_focus_zone_procent
+        elif self.cam_last_known_zone < self.cam_zone and self.servo_cam_focus_zone_procent < 85:
+            print "RIGHT: ", self.cam_last_known_zone, self.cam_zone
+            print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
+            self.servo_cam_focus_zone_procent +=10
+            print "step right 10%", self.servo_cam_focus_zone_procent
+
 
 
     def percentage(self,part, whole):
