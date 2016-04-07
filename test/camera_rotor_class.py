@@ -52,10 +52,11 @@ class camera_rotor(object):
 
         self.in_the_zone = self.findzone()
         if self.in_the_zone is not self.cam_zone_middle:
+            print "FOCUS: servo procent RANGE/TOTAL/STATUS position : ", self.servo_cam_focus_zone_procent
             self.move_servo_to_zone()
         else:
             print "FOCUS: dont move servomotor: ", self.cam_zone_middle
-            print "FOCUS: servo procent moved : ", self.servo_cam_focus_zone_procent
+            print "FOCUS: servo procent RANGE/TOTAL/STATUS position : ", self.servo_cam_focus_zone_procent
 
         return self.x_moves
 
@@ -65,26 +66,32 @@ class camera_rotor(object):
         while select_xone <= self.cam_zones:
             #print "debug ", self.x_focus, select_xone, self.cam_zone_sizes, select_xone * self.cam_zone_sizes
             if self.x_focus < select_xone * self.cam_zone_sizes:
-                print "findzone: FOUND zone(!): ", select_xone
+                print "findzone: FOUND zone(!): ", select_xone, self.x_focus
                 self.cam_zone = select_xone
                 return select_xone
                 break
             select_xone += 1
 
     def move_servo_to_zone(self):
-        print "move_servo_to_zone: servo precent focus: ", self.servo_focus
+        print "move_servo_to_zone: AT THIS MOMENT : servo precent focus: ", self.servo_cam_focus_zone_procent
         #print "move_servo_to_zone: Move servo to: ", self.servo_zone_sizes * self.cam_zone - (self.servo_zone_sizes / 2)
         #print "procent movement: ",
         if self.cam_last_known_zone > self.cam_zone and self.servo_cam_focus_zone_procent > 15:
-            print "LEFT: ", self.cam_last_known_zone, self.cam_zone
+            print "<---- LEFT: ", self.cam_last_known_zone, self.cam_zone
             print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
             self.servo_cam_focus_zone_procent -=10
             print "step left 10%", self.servo_cam_focus_zone_procent
+            self.cam_last_known_zone = self.cam_zone
+            print "DONE LEFT"
+            print ""
         elif self.cam_last_known_zone < self.cam_zone and self.servo_cam_focus_zone_procent < 85:
-            print "RIGHT: ", self.cam_last_known_zone, self.cam_zone
+            print "------> RIGHT: ", self.cam_last_known_zone, self.cam_zone
             print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
             self.servo_cam_focus_zone_procent +=10
-            print "step right 10%", self.servo_cam_focus_zone_procent
+            print "stepping right 10%", self.servo_cam_focus_zone_procent
+            self.cam_last_known_zone = self.cam_zone
+            print "DONE RIGH"
+            print ""
 
 
 
