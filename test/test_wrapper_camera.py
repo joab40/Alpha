@@ -21,7 +21,7 @@ import camera_rotor_class
 if __name__ == '__main__':
 # 640*400
 
-    test = camera_rotor_class.camera_rotor(0,640)
+    test = camera_rotor_class.camera_rotor(0,640,75,180,5)
 # Input focus
     testa = test.focus(450)
     testa = test.focus(550)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     testa = test.focus(160)
     testa = test.focus(140)
     testa = test.focus(100)
-    testa = test.focus(50)
+    testa = test.focus(550)
 
     #testa = test.focus(320)
     #testa = test.focus(320)

@@ -9,7 +9,7 @@ sys.setdefaultencoding('utf8')
 
 
 class camera_rotor(object):
-    def __init__(self,begin, end):
+    def __init__(self,begin, end,camangle,servoangle,camzones):
         self.x_begin = begin
         self.x_end = end
         self.x_middle = self.x_end / 2
@@ -24,10 +24,12 @@ class camera_rotor(object):
         # Tolerance pixels movement accepted at most defined by self.x_tolerance %
         self.x_pixel_tolerance = self.whatispercentageofwhole(self.x_tolerance, self.x_end)
 
+
+
         # Zones
-        self.cam_zones = 5
+        self.cam_zones = camzones
         # Center zone to middle
-        self.cam_zone_middle = 3
+        self.cam_zone_middle = ( self.cam_zones + 1 ) / 2
         self.cam_zone = self.cam_zone_middle
         self.cam_last_known_zone = self.cam_zone
         # ex 640 / 5
@@ -40,6 +42,8 @@ class camera_rotor(object):
         # Prevent servo to rotate more or less 0%-100%
         self.servo_cam_focus_zone_procent = 50
         print "cam zone sizes: ",self.cam_zone_sizes
+        print "print: ", camangle, servoangle
+        self.servo_step_procent =  float(camangle) / float(servoangle) / camzones * 100
 
         #print self.x_pixel_tolerance
 
@@ -76,22 +80,25 @@ class camera_rotor(object):
         print "move_servo_to_zone: AT THIS MOMENT : servo precent focus: ", self.servo_cam_focus_zone_procent
         #print "move_servo_to_zone: Move servo to: ", self.servo_zone_sizes * self.cam_zone - (self.servo_zone_sizes / 2)
         #print "procent movement: ",
+        multiple_movement = abs(self.cam_last_known_zone - self.cam_zone)
+        print "cam last known zone: ", self.cam_last_known_zone, " zone know: ", self.cam_zone, " multiple MOVEMENTS: ", multiple_movement
         if self.cam_last_known_zone > self.cam_zone and self.servo_cam_focus_zone_procent > 15:
             print "<---- LEFT: ", self.cam_last_known_zone, self.cam_zone
             print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
-            self.servo_cam_focus_zone_procent -=10
+            self.servo_cam_focus_zone_procent -= self.servo_step_procent * multiple_movement
             print "step left 10%", self.servo_cam_focus_zone_procent
-            self.cam_last_known_zone = self.cam_zone
+            self.cam_last_known_zone = self.cam_zone_middle
             print "DONE LEFT"
             print ""
         elif self.cam_last_known_zone < self.cam_zone and self.servo_cam_focus_zone_procent < 85:
             print "------> RIGHT: ", self.cam_last_known_zone, self.cam_zone
             print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
-            self.servo_cam_focus_zone_procent +=10
+            self.servo_cam_focus_zone_procent += self.servo_step_procent * multiple_movement
             print "stepping right 10%", self.servo_cam_focus_zone_procent
-            self.cam_last_known_zone = self.cam_zone
+            self.cam_last_known_zone = self.cam_zone_middle
             print "DONE RIGH"
             print ""
+        #self.cam_last_known_zone = self.cam_zone
 
 
 
