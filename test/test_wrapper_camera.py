@@ -24,6 +24,9 @@ if __name__ == '__main__':
     test = camera_rotor_class.camera_rotor(0,640,75,180,5)
 # Input focus
     testa = test.focus(450)
+    print (testa)
+    exit(0)
+
     testa = test.focus(550)
     testa = test.focus(320)
     testa = test.focus(320)
@@ -55,4 +58,4 @@ if __name__ == '__main__':
 #testout = test.svtoen('hej')
 #test.print_translated_message()
 #test.entosv("who are you")
-#print (testout)
+    print (testa)

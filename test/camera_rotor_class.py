@@ -57,10 +57,11 @@ class camera_rotor(object):
         self.in_the_zone = self.findzone()
         if self.in_the_zone is not self.cam_zone_middle:
             print "FOCUS: servo procent RANGE/TOTAL/STATUS position : ", self.servo_cam_focus_zone_procent
-            self.move_servo_to_zone()
+            self.x_moves = self.move_servo_to_zone()
         else:
             print "FOCUS: dont move servomotor: ", self.cam_zone_middle
             print "FOCUS: servo procent RANGE/TOTAL/STATUS position : ", self.servo_cam_focus_zone_procent
+            self.x_moves = 0
 
         return self.x_moves
 
@@ -90,6 +91,7 @@ class camera_rotor(object):
             self.cam_last_known_zone = self.cam_zone_middle
             print "DONE LEFT"
             print ""
+            return self.servo_cam_focus_zone_procent
         elif self.cam_last_known_zone < self.cam_zone and self.servo_cam_focus_zone_procent < 85:
             print "------> RIGHT: ", self.cam_last_known_zone, self.cam_zone
             print "servo_cam_focus_zone_procent: ", self.servo_cam_focus_zone_procent
@@ -98,6 +100,7 @@ class camera_rotor(object):
             self.cam_last_known_zone = self.cam_zone_middle
             print "DONE RIGH"
             print ""
+            return self.servo_cam_focus_zone_procent
         #self.cam_last_known_zone = self.cam_zone
 
 
