@@ -47,3 +47,10 @@ gpio:
 bot:
     alice: True
     translate: True
+
+# Eye Camera Config - Iris
+iris:
+    enable = True
+    zones = 5
+    x_pixels = 640
+    angle_degrees = 30

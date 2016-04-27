@@ -16,6 +16,7 @@ Package(apt-get)
 	- portaudio19-dev
 	- python-dev
 	- mosquitto (mqtt)
+	- python-daemon
 
 Python modules(pip install)
     - aiml
