@@ -5,13 +5,15 @@ import json
 from daemon import runner
 
 topic = "alpha/cam"
+topic = "test"
 
 def on_connect(client, userdata, rc):
         client.subscribe(topic)
 
 def on_message(client, userdata, msg):
-        decode = json.loads(msg.payload)
-        print "subscribed info:",int(decode['xcord']),":end"
+        print msg.topic + " " + str(msg.payload)
+        #decode = json.loads(msg.payload)
+        #print "subscribed info:",int(decode['xcord']),":end"
         #client.disconnect()
 
 class Servo():

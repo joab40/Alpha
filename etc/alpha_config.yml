@@ -1,12 +1,35 @@
 sasha:
     espeak: /usr/bin/espeak -v swedish
 
+# BRAIN WAVES synaps MQTT
+mqtt:
+    enable: True
+    path: /usr/sbin/mosquitto
+    config: /etc/mosquitto/mosquitto.conf
+    start: sudo /etc/init.d/mosquitto start
+    stop: sudo /etc/init.d/mosquitto stop
+    restart: sudo /etc/init.d/mosquitto restart
+
+    topic:
+        # Brain wildcard - anything incomming
+        alpha: alpha/#
+        # TEST
+        cam: alpha/cam
+        # Camera send
+        campub: alpha/campub
+        # Camera recive
+        camsub: alpha/camsub
+        # GPIO servo recv instruktion
+        cambrain: alpha/brain/cam/wave
+
+
 # Translate
 #yandex:
 #    api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
 
 # TTS
 pyvonna:
+    enable: True
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
@@ -18,6 +41,7 @@ tellstick:
 
 # Mainly for translation en-sv sv-en
 translate:
+    enable: True
     #service: google
     service: yandex
     api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
@@ -25,10 +49,12 @@ translate:
 
 # Ask internet
 wolframalpha:
+    enable: True
     alpha_api_key: T75KQ9-PEAV67VPT8
 
 # Face and Voice Reqognition
 keylemon:
+    enable: True
     config:
         user_key: joab40
         keylemon_api_key: 1tBdvyJOPy5gl9ivADIzITfdKGrptpv395GVU1hDb0Nff2Ntvxrydm
@@ -54,3 +80,12 @@ camera:
     zones: 5
     x_pixels: 640
     angle_degrees: 30
+
+# Motion detection - rasberry sudo enable
+motion:
+    enable: True
+    config: ../etc/motion.config
+    pidfil: /tmp/motion/motion.pid
+    ctrl: ../bin/motion.py
+    start: ../bin/motion.py --start
+    path: /usr/bin/motion
