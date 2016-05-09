@@ -3,6 +3,10 @@
 sasha:
     enable: False
     daemon: False
+    starts: ../bin/alpha.py start
+    stopps: ../bin/alpha.py stop
+    status: ../bin/alpha.py status
+    restarts: ../bin/alpha.py restart
     espeak: /usr/bin/espeak -v swedish
 
 # BRAIN WAVES synaps MQTT
