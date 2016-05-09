@@ -74,24 +74,7 @@ if __name__ == '__main__':
             print "Couldnt find ymlfile !?", ymlfile
             sys.exit(1)
 
-        if yconfig['mqtt']['enable']:
-            print "Mqtt mosquitto       [enable]"
-        if yconfig['motion']['enable']:
-            print "Motion daemon        [enable]"
-        if yconfig['camera']['enable']:
-            print "Subscribe to camera  [enable]"
-        if yconfig['wolframalpha']['enable']:
-            print "Wolframalpha         [enable]"
-        if yconfig['bot']['alice']:
-            print "Alice bot            [enable]"
-        if yconfig['gpio']['raspberrypi']:
-            print "Led GPIO             [enable]"
-        if yconfig['translate']['enable']:
-            print "Transalte to swedish [enable]"
-        if yconfig['pyvonna']['enable']:
-            print "Pyvonna TTS          [enable]"
-        if yconfig['keylemon']['enable']:
-            print "Keylemon reqognition [enable]"
+
 
         modules = {}
         modules_daemon_starts = {}
