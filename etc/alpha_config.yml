@@ -1,14 +1,19 @@
+
+
 sasha:
+    enable: False
+    daemon: False
     espeak: /usr/bin/espeak -v swedish
 
 # BRAIN WAVES synaps MQTT
 mqtt:
     enable: True
+    daemon: True
+    starts: sudo /etc/init.d/mosquitto start
+    stopps: sudo /etc/init.d/mosquitto stop
     path: /usr/sbin/mosquitto
     config: /etc/mosquitto/mosquitto.conf
-    start: sudo /etc/init.d/mosquitto start
-    stop: sudo /etc/init.d/mosquitto stop
-    restart: sudo /etc/init.d/mosquitto restart
+    restarts: sudo /etc/init.d/mosquitto restart
 
     topic:
         # Brain wildcard - anything incomming
@@ -30,11 +35,14 @@ mqtt:
 # TTS
 pyvonna:
     enable: True
+    daemon: False
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
 
 tellstick:
+    enable: True
+    daemon: False
     tellsticktemp: ssh joab40@life /usr/local/bin/temperatur.sh
     ebbas vardagsrumlampa av: ssh joab40@life /usr/bin/tdtool --off ebbastält
     aktiverar ebbas lampa: ssh joab40@life /usr/bin/tdtool --on ebbastält
@@ -42,6 +50,7 @@ tellstick:
 # Mainly for translation en-sv sv-en
 translate:
     enable: True
+    daemon: False
     #service: google
     service: yandex
     api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
@@ -50,11 +59,13 @@ translate:
 # Ask internet
 wolframalpha:
     enable: True
+    daemon: False
     alpha_api_key: T75KQ9-PEAV67VPT8
 
 # Face and Voice Reqognition
 keylemon:
     enable: True
+    daemon: False
     config:
         user_key: joab40
         keylemon_api_key: 1tBdvyJOPy5gl9ivADIzITfdKGrptpv395GVU1hDb0Nff2Ntvxrydm
@@ -63,6 +74,8 @@ keylemon:
 
 # Raspberry PI output. led and motor
 gpio:
+    enable: False
+    daemon: False
     raspberrypi: False
     green: 18
     blue: 18
@@ -71,12 +84,18 @@ gpio:
 
 # Enable Alice-bot as secondery chatbot
 bot:
+    enable: True
+    daemon: False
     alice: True
     translate: True
 
 # Eye Camera Config - Iris
 camera:
     enable: True
+    daemon: False
+    starts: ../PRE_DEV_ALPHA20/cam.py start
+    stopps: ../PRE_DEV_ALPHA20/cam.py stop
+    restarts: ../PRE_DEV_ALPHA20/cam.py restart
     zones: 5
     x_pixels: 640
     angle_degrees: 30
@@ -84,8 +103,19 @@ camera:
 # Motion detection - rasberry sudo enable
 motion:
     enable: True
+    daemon: True
+    starts: ../PRE_DEV_ALPHA20/motion.py --start
+    stopps: ../PRE_DEV_ALPHA20/motion.py --stop
+    restarts: ../PRE_DEV_ALPHA20/motion.py --stop;../bin/motion.py --start
     config: ../etc/motion.config
     pidfil: /tmp/motion/motion.pid
     ctrl: ../bin/motion.py
-    start: ../bin/motion.py --start
     path: /usr/bin/motion
+
+# module:
+#   enable: True
+#   daemon: True
+#   starts: /usr/bin/module.sh start
+#   stopps: /usr/bin/module.sh stop
+#   status: /usr/bin/module.sh status
+#   restarts: /usr/bin/module.sh restart

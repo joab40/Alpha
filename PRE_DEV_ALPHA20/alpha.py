@@ -37,6 +37,7 @@ def on_connect(client, userdata, rc):
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
     print msg.topic + " " + str(msg.payload)
+    # X cord from camera eye
     if msg.topic == yconfig['mqtt']['topic']['cam']:
         print "recv cam topic"
         client.publish('test','blargh')
@@ -92,6 +93,57 @@ if __name__ == '__main__':
         if yconfig['keylemon']['enable']:
             print "Keylemon reqognition [enable]"
 
+        modules = {}
+        modules_daemon_starts = {}
+        modules_daemon_stopps = {}
+        modules_daemon_restarts = {}
+        modules_daemon_status = {}
+
+        for ytest in yconfig:
+            try:
+                chk_enable = yconfig[ytest]['enable']
+                logger.debug("module exist and enable is: [%s] -> %s ", yconfig[ytest]['enable'], ytest )
+                if yconfig[ytest]['enable']:
+                    modules[ytest]=yconfig[ytest]['enable']
+            except KeyError, e:
+                logger.debug("Pass module not correct defined: %s ", ytest)
+
+        for modulekey in modules.keys():
+            if modules[modulekey]:
+                print "TRUE"
+                try:
+                    if yconfig[modulekey]['daemon']:
+                        modules_daemon_starts[modulekey]=yconfig[modulekey]['starts']
+                except KeyError, e:
+                    logger.warning("module start parameter is missing: %s", modulekey)
+                try:
+                    if yconfig[modulekey]['daemon']:
+                        modules_daemon_stopps[modulekey]=yconfig[modulekey]['stopps']
+                except KeyError, e:
+                    logger.warning("module stopps parameter is missing: %s", modulekey)
+                try:
+                    if yconfig[modulekey]['daemon']:
+                        modules_daemon_restarts[modulekey]=yconfig[modulekey]['restarts']
+                except KeyError, e:
+                    logger.warning("module restarts parameter is missing: %s", modulekey)
+                try:
+                    if yconfig[modulekey]['daemon']:
+                        modules_daemon_status[modulekey]=yconfig[modulekey]['status']
+                except KeyError, e:
+                    logger.warning("module status parameter is missing: %s", modulekey)
+
+            else:
+                print "FALSE"
+            print ": ", modulekey, " value: ", modules[modulekey]
+
+        print modules_daemon_starts
+        print modules_daemon_stopps
+        print modules_daemon_restarts
+        print modules_daemon_status
+
+
+
+        exit(0)
         topic = yconfig['mqtt']['topic']['alpha']
         client = mqtt.Client()
         client.on_connect = on_connect
