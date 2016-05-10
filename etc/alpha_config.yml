@@ -8,6 +8,7 @@ sasha:
     status: ../bin/alpha.py status
     restarts: ../bin/alpha.py restart
     espeak: /usr/bin/espeak -v swedish
+    mqttsubscribe: alpha/
 
 # BRAIN WAVES synaps MQTT
 mqtt:
