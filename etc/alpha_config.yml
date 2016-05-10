@@ -8,7 +8,7 @@ sasha:
     status: ../bin/alpha.py status
     restarts: ../bin/alpha.py restart
     espeak: /usr/bin/espeak -v swedish
-    mqttsubscribe: alpha/
+    mqttsub: "alpha/#"
 
 # BRAIN WAVES synaps MQTT
 mqtt:
@@ -44,6 +44,8 @@ pyvonna:
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
+    mqttsub: "alpha/tts"
+    mqttpub: "alpa/tts"
 
 tellstick:
     enable: True
