@@ -8,7 +8,6 @@ sasha:
     status: ../bin/alpha.py status
     restarts: ../bin/alpha.py restart
     espeak: /usr/bin/espeak -v swedish
-    mqttsub: "alpha/#"
 
 # BRAIN WAVES synaps MQTT
 mqtt:
@@ -44,8 +43,6 @@ pyvonna:
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
-    mqttsub: "alpha/tts/sub"
-    mqttpub: "alpha/tts/pub"
 
 tellstick:
     enable: True
@@ -53,15 +50,11 @@ tellstick:
     tellsticktemp: ssh joab40@life /usr/local/bin/temperatur.sh
     ebbas vardagsrumlampa av: ssh joab40@life /usr/bin/tdtool --off ebbastält
     aktiverar ebbas lampa: ssh joab40@life /usr/bin/tdtool --on ebbastält
-    mqttsub: "alpha/tellstick/sub"
-    mqttpub: "alpha/tellstick/pub"
 
 # Mainly for translation en-sv sv-en
 translate:
     enable: True
     daemon: False
-    mqttsub: "alpha/translate/sub"
-    mqttpub: "alpha/translate/pub"
     #service: google
     service: yandex
     api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
@@ -72,15 +65,11 @@ wolframalpha:
     enable: True
     daemon: False
     alpha_api_key: T75KQ9-PEAV67VPT8
-    mqttsub: "alpha/wolfram/sub"
-    mqttpub: "alpha/wolfram/pub"
 
 # Face and Voice Reqognition
 keylemon:
     enable: True
     daemon: False
-    mqttsub: "alpha/keylemon/sub"
-    mqttpub: "alpha/keylemon/pub"
     config:
         user_key: joab40
         keylemon_api_key: 1tBdvyJOPy5gl9ivADIzITfdKGrptpv395GVU1hDb0Nff2Ntvxrydm
@@ -92,8 +81,6 @@ gpio:
     enable: False
     daemon: False
     raspberrypi: False
-    mqttsub: "alpha/gpio/sub"
-    mqttpub: "alpha/gpio/pub"
     green: 18
     blue: 18
     yellow: 23
@@ -105,8 +92,6 @@ bot:
     daemon: False
     alice: True
     translate: True
-    mqttsub: "alpha/bot/alice/sub"
-    mqttpub: "alpha/bot/alice/pub"
 
 # Eye Camera Config - Iris
 camera:
@@ -115,8 +100,6 @@ camera:
     starts: ../PRE_DEV_ALPHA20/cam.py start
     stopps: ../PRE_DEV_ALPHA20/cam.py stop
     restarts: ../PRE_DEV_ALPHA20/cam.py restart
-    mqttsub: "alpha/camera/sub"
-    mqttpub: "alpha/camera/pub"
     zones: 5
     x_pixels: 640
     angle_degrees: 30
@@ -128,8 +111,6 @@ motion:
     starts: ../PRE_DEV_ALPHA20/motion.py --start
     stopps: ../PRE_DEV_ALPHA20/motion.py --stop
     restarts: ../PRE_DEV_ALPHA20/motion.py --stop;../bin/motion.py --start
-    mqttsub: "alpha/motion/sub"
-    mqttpub: "alpha/motion/pub"
     config: ../etc/motion.config
     pidfil: /tmp/motion/motion.pid
     ctrl: ../bin/motion.py

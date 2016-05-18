@@ -11,8 +11,8 @@ import logging
 import paho.mqtt.client as mqtt
 import json
 from commands import *
-
 import sys
+
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -20,6 +20,13 @@ sys.setdefaultencoding('utf8')
 basepath = os.path.dirname(os.path.abspath(__file__))
 ymlfile = basepath + "/../etc/alpha_config.yml"
 libpath = basepath + "/../lib/"
+
+if libpath not in sys.path:
+        sys.path.insert(1, libpath)
+import led_class
+
+import modules_class
+
 # Topic wildcard
 topic = "alpha/#"
 
@@ -47,7 +54,8 @@ def on_message(client, userdata, msg):
 
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
+if "a" == "a":
         Version = "2.00"
         parser = argparse.ArgumentParser(description='sasha')
         parser.add_argument("--textonly", "-t", help="Text only, disable all voice", action="store_true")
@@ -75,54 +83,9 @@ if __name__ == '__main__':
             sys.exit(1)
 
 
-
-        modules = {}
-        modules_daemon_starts = {}
-        modules_daemon_stopps = {}
-        modules_daemon_restarts = {}
-        modules_daemon_status = {}
-
-        for ytest in yconfig:
-            try:
-                chk_enable = yconfig[ytest]['enable']
-                logger.debug("module exist and enable is: [%s] -> %s ", yconfig[ytest]['enable'], ytest )
-                if yconfig[ytest]['enable']:
-                    modules[ytest]=yconfig[ytest]['enable']
-            except KeyError, e:
-                logger.debug("Pass module not correct defined: %s ", ytest)
-
-        for modulekey in modules.keys():
-            if modules[modulekey]:
-                print "TRUE"
-                try:
-                    if yconfig[modulekey]['daemon']:
-                        modules_daemon_starts[modulekey]=yconfig[modulekey]['starts']
-                except KeyError, e:
-                    logger.warning("module start parameter is missing: %s", modulekey)
-                try:
-                    if yconfig[modulekey]['daemon']:
-                        modules_daemon_stopps[modulekey]=yconfig[modulekey]['stopps']
-                except KeyError, e:
-                    logger.warning("module stopps parameter is missing: %s", modulekey)
-                try:
-                    if yconfig[modulekey]['daemon']:
-                        modules_daemon_restarts[modulekey]=yconfig[modulekey]['restarts']
-                except KeyError, e:
-                    logger.warning("module restarts parameter is missing: %s", modulekey)
-                try:
-                    if yconfig[modulekey]['daemon']:
-                        modules_daemon_status[modulekey]=yconfig[modulekey]['status']
-                except KeyError, e:
-                    logger.warning("module status parameter is missing: %s", modulekey)
-
-            else:
-                print "FALSE"
-            print ": ", modulekey, " value: ", modules[modulekey]
-
-        print modules_daemon_starts
-        print modules_daemon_stopps
-        print modules_daemon_restarts
-        print modules_daemon_status
+        moduler=modules_class.modules('../etc/alpha_config.yml')
+        moduler.show()
+        moduler.start()
 
 
 
