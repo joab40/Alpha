@@ -49,6 +49,11 @@ def on_message(client, userdata, msg):
         print "recv cam topic"
         client.publish('test','blargh')
 
+    if msg.topic == yconfig['mqtt']['topic']['stt']:
+        print "^- Input from STT"
+        #client.publish('test','blargh')
+
+
 
 
 
@@ -89,7 +94,7 @@ if "a" == "a":
 
 
 
-        exit(0)
+        #exit(0)
         topic = yconfig['mqtt']['topic']['alpha']
         client = mqtt.Client()
         client.on_connect = on_connect
