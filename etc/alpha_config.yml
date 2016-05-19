@@ -16,6 +16,8 @@ mqtt:
     starts: sudo /etc/init.d/mosquitto start
     stopps: sudo /etc/init.d/mosquitto stop
     path: /usr/sbin/mosquitto
+    host: pi
+    port: 1883
     config: /etc/mosquitto/mosquitto.conf
     restarts: sudo /etc/init.d/mosquitto restart
 
@@ -38,13 +40,29 @@ mqtt:
 # Translate
 #yandex:
 #    api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
+stt:
+    enable: True
+    daemon: False
+    mqttalive: False
+    mqttparam: text
 
 # TTS
+tts:
+    enable: True
+    daemon: False
+    mqttalive: False
+    mqttparam: text
+    # Pyvonna parameters
+    user_key: GDNAID2S3BMA3DVBHUMQ
+    cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
+    voice: Astrid
+
+# TTS for Alpha Version 1
 pyvonna:
     enable: True
     daemon: False
     mqttalive: False
-    mqttparam: command
+    mqttparam: text
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid

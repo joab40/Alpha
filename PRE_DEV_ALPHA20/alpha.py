@@ -49,8 +49,25 @@ def on_message(client, userdata, msg):
         print "recv cam topic"
         client.publish('test','blargh')
 
-    if msg.topic == yconfig['mqtt']['topic']['stt']:
+    # Recived data from Speach to text plugin
+    if msg.topic == yconfig['mqtt']['topic']['stt'] and yconfig['stt']['enable']:
         print "^- Input from STT"
+        decode = json.loads(msg.payload)
+        message = "subscribed info:", decode[yconfig['stt']['mqttparam']]
+        if decode[yconfig['stt']['mqttparam']] == "stop mqtt":
+            print "exit disconnect"
+            client.disconnect()
+            moduler.stop()
+        if message == "avsluta":
+            #piled.off()
+            exit(0)
+        elif message == "save":
+            print "save info to bot"
+            #kernel.saveBrain("bot_brain.brn")
+        else:
+            print "Bot enable"
+            #bot_response = kernel.respond(message)
+
         #client.publish('test','blargh')
 
 
