@@ -1,4 +1,10 @@
-
+main:
+    quit: avsluta
+    message_broaker:
+    area:
+        0: livingroom
+        1: kitchen
+        2: hall
 
 sasha:
     enable: False
@@ -11,16 +17,19 @@ sasha:
 
 # BRAIN WAVES synaps MQTT
 mqtt:
-    enable: True
+    enable: False
     daemon: True
     starts: sudo /etc/init.d/mosquitto start
     stopps: sudo /etc/init.d/mosquitto stop
     path: /usr/sbin/mosquitto
-    host: pi
+    host: localhost
     port: 1883
     config: /etc/mosquitto/mosquitto.conf
     restarts: sudo /etc/init.d/mosquitto restart
 
+    # This is where alpha will listen for incomming data from modules
+    # If a module for example would like to talk to alpha
+    # The module config manage mqtt topic by its own config.
     topic:
         # Brain wildcard - anything incomming
         alpha: alpha/#
@@ -36,30 +45,136 @@ mqtt:
         stt: alpha/stt
         # TTS Text to speach  Create voice from text
         tts: alpha/tts
+        # Chatbot - sent message incomming to broker
+        chatbot: alpha/chatbot
+        # Samsung remote control with raspberry pi and gpio
+        samsungremote: alpha/samsungremote
+        # Tellstick
+        tellstick: alpha/tellstick
+        # Chatbot 2
+        alva: alpha/alva
+        # Chatbot 3
+        alfa: alpha/alfa
 
 # Translate
 #yandex:
 #    api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
+chatbot:
+
+    enable: True
+    daemon: True
+    # Answer a simple question
+    mqttalive: True
+    mqttparam: text
+    mqtttopic: fromalpha/chatbot
+    starts: ../PRE_DEV_ALPHA20/chatbot.py start
+    stopps: ../PRE_DEV_ALPHA20/chatbot.py stop
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/chatbot.py --start
+    status: ../PRE_DEV_ALPHA20/chatbot.py --status
+    config: ../etc/nonechatbot.config
+    pidfil: /tmp/motion/chatbot.pid
+    ctrl: ../bin/nonechatbotctrl.py
+    path: /usr/bin/nonepaht
+    # chatbot should not have a releation to another chatbot.
+    # Its the senders relationship that is important.
+    relation: tellstick samsungremote tts
+    gpio: False
+
+# chatbot alpha can olso be a seder from stt
+alfa:
+    enable: False
+    daemon: False
+    mqttalive: True
+    mqttparam: text
+    mqtttopic: fromalpha/alfa
+    starts: ../PRE_DEV_ALPHA20/alfa.py start
+    stopps: ../PRE_DEV_ALPHA20/alfa.py stop
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alfa.py --start
+    status: ../PRE_DEV_ALPHA20/alfa.py --status
+    config: ../etc/nonealfa.config
+    pidfil: /tmp/motion/alfa.pid
+    ctrl: ../bin/nonealfactrl.py
+    path: /usr/bin/nonepaht
+    # chatbot should not have a releation to another chatbot.
+    # Its the senders relationship that is important.
+    relation: chatbot alfa tts
+    gpio: False
+
+#  chatbot alva can also be a sender from stt
+alva:
+    enable: False
+    daemon: False
+    mqttalive: True
+    mqttparam: text
+    mqtttopic: fromalpha/alva
+    starts: ../PRE_DEV_ALPHA20/alva.py start
+    stopps: ../PRE_DEV_ALPHA20/alva.py stop
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alva.py --start
+    status: ../PRE_DEV_ALPHA20/alva.py --status
+    config: ../etc/nonealva.config
+    pidfil: /tmp/motion/alva.pid
+    ctrl: ../bin/nonealvactrl.py
+    path: /usr/bin/nonepaht
+    # chatbot should not have a releation to another chatbot.
+    # Its the senders relationship that is important.
+    relation: chatbot alva tts
+    gpio: False
+
 stt:
     enable: True
     daemon: False
     mqttalive: False
     mqttparam: text
+    relation: chatbot tellstick translate wolframalpha
+
 
 # TTS
 tts:
     enable: True
-    daemon: False
+    daemon: True
     mqttalive: False
     mqttparam: text
+    mqtttopic: fromalpha/tts
+    starts: ../PRE_DEV_ALPHA20/tts.py start
+    stopps: ../PRE_DEV_ALPHA20/tts.py stop
+    restarts: ../PRE_DEV_ALPHA20/tts.py --stop;../PRE_DEV_ALPHA20/tts.py --start
+    status: ../PRE_DEV_ALPHA20/tts.py --status
+    config: ../etc/nonetts.config
+    pidfil: /tmp/motion/tts.pid
+    ctrl: ../bin/nonettsctrl.py
+    path: /usr/bin/nonepaht
+
     # Pyvonna parameters
     user_key: GDNAID2S3BMA3DVBHUMQ
     cert_key: cGdm9AuUXNga6BGa1bKORk3kVca9jUBxILDXu8yP
     voice: Astrid
 
+samsungremote:
+    enable: True
+    daemon: True
+    mqttalive: False
+    mqttparam: text
+    mqtttopic: fromalpha/samsungremote
+#    jag slår på tv: command
+#    jag stänger av tv: command
+#    jag höjer volumen: command
+#    jag höjer volumen 2 steg: command
+#    jag sänker volymen: command
+#    jag stänger av tv ljudet: command
+#    jag slår på tv ljudet: command
+    starts: ../PRE_DEV_ALPHA20/samsungremote.py start
+    stopps: ../PRE_DEV_ALPHA20/samsungremote.py stop
+    restarts: ../PRE_DEV_ALPHA20/samsungremote.py --stop;../PRE_DEV_ALPHA20/samsungremote.py --start
+    status: ../PRE_DEV_ALPHA20/samsungremote.py --status
+    config: ../etc/nonesamsungremote.config
+    pidfil: /tmp/motion/samsungremote.pid
+    ctrl: ../bin/nonesamsungremotectrl.py
+    path: /usr/bin/nonepaht
+    releation: tts
+
 # TTS for Alpha Version 1
 pyvonna:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: text
@@ -69,16 +184,26 @@ pyvonna:
 
 tellstick:
     enable: True
-    daemon: False
+    daemon: True
     mqttalive: False
-    mqttparam: command
+    mqttparam: text
+    mqtttopic: fromalpha/tellstick
+    starts: ../PRE_DEV_ALPHA20/tellstick.py start
+    stopps: ../PRE_DEV_ALPHA20/tellstick.py stop
+    restarts: ../PRE_DEV_ALPHA20/tellstick.py --stop;../PRE_DEV_ALPHA20/tellstick.py --start
+    status: ../PRE_DEV_ALPHA20/tellstick.py --status
+    config: ../etc/nonestellstick.config
+    pidfil: /tmp/motion/tellstick.pid
+    ctrl: ../bin/nonestellstickctrl.py
+    path: /usr/bin/nonepaht
     tellsticktemp: ssh joab40@life /usr/local/bin/temperatur.sh
     ebbas vardagsrumlampa av: ssh joab40@life /usr/bin/tdtool --off ebbastält
     aktiverar ebbas lampa: ssh joab40@life /usr/bin/tdtool --on ebbastält
+    releation: tts
 
 # Mainly for translation en-sv sv-en
 translate:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: command
@@ -86,18 +211,20 @@ translate:
     service: yandex
     api_key: trnsl.1.1.20160313T204945Z.9728f9893e4cbe8d.c758fc267bbddd202f145741bd673ca785c4fb37
     google_api_key: AIzaSyAk5O0UkWrhyb7JhZLMwSnqD_FtghXhiTU
+    relation: wolframalpha tts
 
 # Ask internet
 wolframalpha:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: command
     alpha_api_key: T75KQ9-PEAV67VPT8
+    relation: translate tts
 
 # Face and Voice Reqognition
 keylemon:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: command
@@ -121,7 +248,7 @@ gpio:
 
 # Enable Alice-bot as secondery chatbot
 bot:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: command
@@ -130,7 +257,7 @@ bot:
 
 # Eye Camera Config - Iris
 camera:
-    enable: True
+    enable: False
     daemon: False
     mqttalive: False
     mqttparam: command
@@ -143,8 +270,8 @@ camera:
 
 # Motion detection - rasberry sudo enable
 motion:
-    enable: True
-    daemon: True
+    enable: False
+    daemon: False
     mqttalive: False
     mqttparam: command
     starts: ../PRE_DEV_ALPHA20/motion.py --start
@@ -155,7 +282,7 @@ motion:
     ctrl: ../bin/motion.py
     path: /usr/bin/motion
 
-# module:
+# module_template:
 #   enable: True
 #   daemon: True
 #   starts: /usr/bin/module.sh start
