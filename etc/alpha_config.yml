@@ -67,6 +67,7 @@ chatbot:
     mqttalive: True
     mqttparam: text
     mqtttopic: fromalpha/chatbot
+    enable_tty: True
     starts: ../PRE_DEV_ALPHA20/chatbot.py start
     stopps: ../PRE_DEV_ALPHA20/chatbot.py stop
     restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/chatbot.py --start
@@ -87,6 +88,7 @@ alfa:
     mqttalive: True
     mqttparam: text
     mqtttopic: fromalpha/alfa
+    enable_tty: True
     starts: ../PRE_DEV_ALPHA20/alfa.py start
     stopps: ../PRE_DEV_ALPHA20/alfa.py stop
     restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alfa.py --start
@@ -107,6 +109,7 @@ alva:
     mqttalive: True
     mqttparam: text
     mqtttopic: fromalpha/alva
+    enable_tty: True
     starts: ../PRE_DEV_ALPHA20/alva.py start
     stopps: ../PRE_DEV_ALPHA20/alva.py stop
     restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alva.py --start
@@ -135,6 +138,7 @@ tts:
     mqttalive: False
     mqttparam: text
     mqtttopic: fromalpha/tts
+    enable_tty: True
     starts: ../PRE_DEV_ALPHA20/tts.py start
     stopps: ../PRE_DEV_ALPHA20/tts.py stop
     restarts: ../PRE_DEV_ALPHA20/tts.py --stop;../PRE_DEV_ALPHA20/tts.py --start
@@ -162,7 +166,8 @@ samsungremote:
 #    jag sänker volymen: command
 #    jag stänger av tv ljudet: command
 #    jag slår på tv ljudet: command
-    starts: ../PRE_DEV_ALPHA20/samsungremote.py start
+    enable_tty: False
+    starts: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py start
     stopps: ../PRE_DEV_ALPHA20/samsungremote.py stop
     restarts: ../PRE_DEV_ALPHA20/samsungremote.py --stop;../PRE_DEV_ALPHA20/samsungremote.py --start
     status: ../PRE_DEV_ALPHA20/samsungremote.py --status
@@ -282,10 +287,31 @@ motion:
     ctrl: ../bin/motion.py
     path: /usr/bin/motion
 
-# module_template:
-#   enable: True
-#   daemon: True
-#   starts: /usr/bin/module.sh start
-#   stopps: /usr/bin/module.sh stop
-#   status: /usr/bin/module.sh status
-#   restarts: /usr/bin/module.sh restart
+
+# This is for description - A dummy module example
+module_template:
+    # Enable module
+    enable: False
+    # If module are going to be mangae by alpha as a deamon
+    daemon: False
+    # Answer a simple question, depricated. Problably not in use
+    mqttalive: False
+    # Defines how json message is manage. For example test or int.
+    mqttparam: text
+    # Recv mqtt topic for deamon
+    mqtttopic: fromalpha/chatbot
+    # If deamon is running local with alpha. tty is used for output from deamon
+    enable_tty: False
+    starts: ../PRE_DEV_ALPHA20/chatbot.py start
+    stopps: ../PRE_DEV_ALPHA20/chatbot.py stop
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/chatbot.py --start
+    status: ../PRE_DEV_ALPHA20/chatbot.py --status
+    config: ../etc/nonechatbot.config
+    pidfil: /tmp/motion/chatbot.pid
+    ctrl: ../bin/nonechatbotctrl.py
+    path: /usr/bin/nonepaht
+    # chatbot should not have a releation to another chatbot.
+    # Its the senders relationship that is important.
+    relation: tellstick samsungremote tts
+    # If deamon should use led lights
+    gpio: False

@@ -133,7 +133,7 @@ https://github.com/gunthercox/ChatterBot
         "okey" + "i will lif my arm" + "grab cake" + "move cake to its new destination"
     3) And I will say "here is your cake"
 
-    In order to be able to interact with thinks, you might need to know how things are
+    In order to be able to interact with environment, you might need to know how things are
     kept together. This is done by learning. In Alphas case, we already done som learning.
     This is done by telling alpha from the beginning what its arms,legs, ears and mouth is for
     and that it could be used. Alpha also has a AI - chatbot.

@@ -2,7 +2,6 @@
 import time
 import paho.mqtt.client as mqtt
 import json
-from daemon import runner
 import yaml
 import os,sys
 import logging
@@ -19,6 +18,7 @@ if libpath not in sys.path:
         sys.path.insert(1, libpath)
 
 from messager_mqtt import create_message,extract_message,create_from_message,bounche_message
+import runner
 
 def readyaml(yfile):
     with open(yfile, 'r') as f:
@@ -51,8 +51,12 @@ def on_message(client, userdata, msg):
 class module():
     def __init__(self):
         self.stdin_path = '/dev/null'
-        self.stdout_path = '/dev/tty'
-        self.stderr_path = '/dev/tty'
+        if yconfig[module_name]['enable_tty']:
+            self.stdout_path = '/dev/tty'
+            self.stderr_path = '/dev/tty'
+        else:
+            self.stdout_path = '/dev/null'
+            self.stderr_path = '/dev/null'
         self.pidfile_path = '/tmp/' + module_name + '.pid'
         self.pidfile_timeout = 5
 

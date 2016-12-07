@@ -2,7 +2,7 @@
 import time
 import paho.mqtt.client as mqtt
 import json
-from daemon import runner
+#from daemon import runner
 import yaml
 import os,sys
 import logging
@@ -19,6 +19,7 @@ if libpath not in sys.path:
         sys.path.insert(1, libpath)
 
 from messager_mqtt import create_message,extract_message,create_from_message,bounche_message
+import runner
 
 #topic = "alpha/chatbotproc"
 
@@ -77,6 +78,7 @@ class chatbot():
         self.pidfile_timeout = 5
 
     def run(self):
+
         client = mqtt.Client()
         client.on_connect = on_connect
         client.on_message = on_message
@@ -101,14 +103,15 @@ if __name__ == '__main__':
     logger.debug('  main listen to mqtt topic [\033[0;32m%s\033[0m]',listen_topic)
     logger.debug('  main sends  to mqtt topic [\033[0;32m%s\033[0m]', send_topic)
 
-    # Chatbot Alice
-    kernel = aiml.Kernel()
-    kernel.learn("../etc/std-alpha.xml")
-    kernel.respond("load aiml t")
-    if yconfig['bot']['alice']:
-        alicekernel = aiml.Kernel()
-        alicekernel.learn("../etc/std-alice.xml")
-        alicekernel.respond("load aiml alice")
+    if sys.argv[1] == 'start':
+        #Chatbot Alice
+        kernel = aiml.Kernel()
+        kernel.learn("../etc/std-alpha.xml")
+        kernel.respond("load aiml t")
+        if yconfig['bot']['alice']:
+            alicekernel = aiml.Kernel()
+            alicekernel.learn("../etc/std-alice.xml")
+            alicekernel.respond("load aiml alice")
 
     app = chatbot()
     daemon_runner = runner.DaemonRunner(app)

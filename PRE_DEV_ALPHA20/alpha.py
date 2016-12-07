@@ -120,7 +120,7 @@ def on_message(client, userdata, msg):
             client.publish(msg.topic, bounced_msg)
 
         else:
-            logger.debug('on_message - Message is destination is \033[0;31mNOTOK\033[0m] ', msg.payload)
+            logger.debug('on_message - Message destination is \033[0;31mNOTOK\033[0m] ', msg.payload)
             # Eventual this messege should go to TTS. Some one need to know that this failed.
     else:
         logger.debug('on_message - Message is lost \033[0;31mNOTOK\033[0m]')

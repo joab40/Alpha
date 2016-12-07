@@ -120,7 +120,7 @@ class modules(object):
         for module in self.modules_daemon_status.keys():
             print "Statusscript  : ",self.modules_daemon_status[module]
         print "-----------------------------------------------------------------------------------------------------"
-       
+
         #        print self.modules_daemon_status
 #        print self.modules_daemon_restarts
 #        print self.modules_daemon_starts
