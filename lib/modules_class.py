@@ -83,7 +83,13 @@ class modules(object):
         if modul == 'all':
             for modulekey in self.modules_daemon_starts.keys():
                 logger.debug("start - os.system execute modul [\033[0;32m%s\033[0m]: ",self.modules_daemon_starts[modulekey] )
-                os.system(self.modules_daemon_starts[modulekey])
+                exit_code = os.system(self.modules_daemon_starts[modulekey])
+                if exit_code == 0:
+                    logger.info("start - os.system execute modul [\033[0;32mOK\033[0m]: %s",
+                                 self.modules_daemon_starts[modulekey])
+                else:
+                    logger.info("start - os.system execute modul [\033[0;31mFAILED\033[0m]: %s",
+                                 self.modules_daemon_starts[modulekey])
         else:
             try:
                 os.system(self.modules_daemon_starts[modul])
@@ -93,16 +99,57 @@ class modules(object):
         #print "starts: ",modules
         #print self.modules_daemon_starts
 
-    def stop(self,modules='all'):
-        logger.debug('stop - Nothing is executing [\033[0;33m%s\033[0m]: ', modules)
-        #print self.modules_daemon_stopps
+    def stop(self,modul='all'):
+        if modul == 'all':
+            for modulekey in self.modules_daemon_stopps.keys():
+                logger.debug("stop - os.system execute modul [\033[0;32m%s\033[0m]: ",self.modules_daemon_stopps[modulekey] )
+                exit_code = os.system(self.modules_daemon_stopps[modulekey])
+                if exit_code == 0:
+                    logger.info("stop - os.system execute modul [\033[0;32mOK\033[0m]: %s",
+                                 self.modules_daemon_stopps[modulekey])
+                else:
+                    logger.info("stop - os.system execute modul [\033[0;31mFAILED\033[0m]: %s",
+                                 self.modules_daemon_stopps[modulekey])
+        else:
+            try:
+                os.system(self.modules_daemon_stopps[modul])
+            except KeyError, e:
+                logger.warning('start - module doesnt exist %s: ', modul)
 
-    def restart(self,modules='all'):
-        logger.debug('restart - Nothing is executing [\033[0;33m%s\033[0m]: ', modules)
+    def restart(self,modul='all'):
+        if modul == 'all':
+            for modulekey in self.modules_daemon_restartss.keys():
+                logger.debug("restart - os.system execute modul [\033[0;32m%s\033[0m]: ",self.modules_daemon_restarts[modulekey] )
+                exit_code = os.system(self.modules_daemon_restarts[modulekey])
+                if exit_code == 0:
+                    logger.info("restart - os.system execute modul [\033[0;32mOK\033[0m]: %s",
+                                 self.modules_daemon_restarts[modulekey])
+                else:
+                    logger.info("restart - os.system execute modul [\033[0;31mFAILED\033[0m]: %s",
+                                 self.modules_daemon_restarts[modulekey])
+        else:
+            try:
+                os.system(self.modules_daemon_restarts[modul])
+            except KeyError, e:
+                logger.warning('restart - module doesnt exist %s: ', modul)
 
-    def status(self,modules='all'):
-        logger.debug('status - Nothing is executing [\033[0;31m%s\033[0m]: ',modules )
-        #print "status modules: ", self.modules_daemon_status
+
+    def status(self,modul='all'):
+        if modul == 'all':
+            for modulekey in self.modules_daemon_status.keys():
+                logger.debug("status - os.system execute modul [\033[0;32m%s\033[0m]: ",self.modules_daemon_status[modulekey] )
+                exit_code = os.system(self.modules_daemon_status[modulekey])
+                if exit_code == 0:
+                    logger.info("status - os.system execute modul [\033[0;32mRUNNING\033[0m]: %s",
+                                 self.modules_daemon_status[modulekey])
+                else:
+                    logger.info("status - os.system execute modul [\033[0;31mDOWN\033[0m]: %s",
+                                 self.modules_daemon_status[modulekey])
+        else:
+            try:
+                os.system(self.modules_daemon_status[modul])
+            except KeyError, e:
+                logger.warning('status - module doesnt exist %s: ', modul)
 
 
     def show(self):
@@ -196,7 +243,7 @@ if __name__ == '__main__':
     Version = "1.00"
     parser = argparse.ArgumentParser(description='modules_class')
     parser.add_argument('-c', '--control', default='verify',
-                        choices=['verify', 'show', 'predefined', 'start', 'send_stop','stop'], help='Default WARNING')
+                        choices=['status','verify', 'show', 'predefined', 'start', 'send_stop','stop'], help='Default WARNING')
     parser.add_argument('-d', '--loglevel', default='INFO',
                         choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'], help='Default WARNING')
     parser.add_argument('-f', '--logfile', default='', help='Path to Logfile')
@@ -216,7 +263,10 @@ if __name__ == '__main__':
 #    LOGLEVEL = 'DEBUG'
     test = modules('../etc/alpha_config.yml')
     if args.control == 'verify':
+        logging.getLogger().setLevel(logging.DEBUG)
         test.verify_modules()
+        test.predefine_status()
+        test.show()
     elif args.control == 'show':
         test.show()
     elif args.control == 'start':
@@ -227,5 +277,7 @@ if __name__ == '__main__':
         test.stop()
     elif args.control == 'predefined':
         test.predefine_status()
+    elif args.control == 'status':
+        test.status()
 
 

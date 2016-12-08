@@ -70,15 +70,15 @@ chatbot:
     enable_tty: True
     starts: ../PRE_DEV_ALPHA20/chatbot.py start
     stopps: ../PRE_DEV_ALPHA20/chatbot.py stop
-    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/chatbot.py --start
-    status: ../PRE_DEV_ALPHA20/chatbot.py --status
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py stop;../PRE_DEV_ALPHA20/chatbot.py start
+    status: ../PRE_DEV_ALPHA20/chatbot.py status
     config: ../etc/nonechatbot.config
     pidfil: /tmp/motion/chatbot.pid
     ctrl: ../bin/nonechatbotctrl.py
     path: /usr/bin/nonepaht
     # chatbot should not have a releation to another chatbot.
     # Its the senders relationship that is important.
-    relation: tellstick samsungremote tts
+    relation: samsungremote tts
     gpio: False
 
 # chatbot alpha can olso be a seder from stt
@@ -91,8 +91,8 @@ alfa:
     enable_tty: True
     starts: ../PRE_DEV_ALPHA20/alfa.py start
     stopps: ../PRE_DEV_ALPHA20/alfa.py stop
-    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alfa.py --start
-    status: ../PRE_DEV_ALPHA20/alfa.py --status
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py stop;../PRE_DEV_ALPHA20/alfa.py start
+    status: ../PRE_DEV_ALPHA20/alfa.py status
     config: ../etc/nonealfa.config
     pidfil: /tmp/motion/alfa.pid
     ctrl: ../bin/nonealfactrl.py
@@ -112,8 +112,8 @@ alva:
     enable_tty: True
     starts: ../PRE_DEV_ALPHA20/alva.py start
     stopps: ../PRE_DEV_ALPHA20/alva.py stop
-    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/alva.py --start
-    status: ../PRE_DEV_ALPHA20/alva.py --status
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py stop;../PRE_DEV_ALPHA20/alva.py start
+    status: ../PRE_DEV_ALPHA20/alva.py status
     config: ../etc/nonealva.config
     pidfil: /tmp/motion/alva.pid
     ctrl: ../bin/nonealvactrl.py
@@ -141,8 +141,8 @@ tts:
     enable_tty: True
     starts: ../PRE_DEV_ALPHA20/tts.py start
     stopps: ../PRE_DEV_ALPHA20/tts.py stop
-    restarts: ../PRE_DEV_ALPHA20/tts.py --stop;../PRE_DEV_ALPHA20/tts.py --start
-    status: ../PRE_DEV_ALPHA20/tts.py --status
+    restarts: ../PRE_DEV_ALPHA20/tts.py stop;../PRE_DEV_ALPHA20/tts.py start
+    status: ../PRE_DEV_ALPHA20/tts.py status
     config: ../etc/nonetts.config
     pidfil: /tmp/motion/tts.pid
     ctrl: ../bin/nonettsctrl.py
@@ -159,23 +159,30 @@ samsungremote:
     mqttalive: False
     mqttparam: text
     mqtttopic: fromalpha/samsungremote
-#    jag slår på tv: command
-#    jag stänger av tv: command
-#    jag höjer volumen: command
-#    jag höjer volumen 2 steg: command
-#    jag sänker volymen: command
-#    jag stänger av tv ljudet: command
-#    jag slår på tv ljudet: command
-    enable_tty: False
-    starts: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py start
+    #enable_tty: False
+    enable_tty: True
+    #starts: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py start
+    starts: ../PRE_DEV_ALPHA20/samsungremote.py start
+    #stopps: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py stop
     stopps: ../PRE_DEV_ALPHA20/samsungremote.py stop
-    restarts: ../PRE_DEV_ALPHA20/samsungremote.py --stop;../PRE_DEV_ALPHA20/samsungremote.py --start
-    status: ../PRE_DEV_ALPHA20/samsungremote.py --status
+    restarts: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py restart
+    #restarts: ../PRE_DEV_ALPHA20/samsungremote.py stop;../PRE_DEV_ALPHA20/samsungremote.py start
+    #status: ssh pi@pi /home/pi/Alpha/PRE_DEV_ALPHA20/samsungremote.py status
+    status: ../PRE_DEV_ALPHA20/samsungremote.py status
     config: ../etc/nonesamsungremote.config
     pidfil: /tmp/motion/samsungremote.pid
     ctrl: ../bin/nonesamsungremotectrl.py
     path: /usr/bin/nonepaht
-    releation: tts
+    relation: tts
+    botresponsecmd:
+          slår på tv: echo "remote on"
+          stänger av tv: echo "remote off
+          höjer volumen: echo "volume up"
+          jag är ju sasha: echo "volume upp 2 step"
+          sänker volymen: echo "volume down"
+          stänger av tv ljudet: echo "mute"
+          slår på tv ljudet: echo "mute off"
+
 
 # TTS for Alpha Version 1
 pyvonna:
@@ -193,10 +200,11 @@ tellstick:
     mqttalive: False
     mqttparam: text
     mqtttopic: fromalpha/tellstick
+    enable_tty: True
     starts: ../PRE_DEV_ALPHA20/tellstick.py start
     stopps: ../PRE_DEV_ALPHA20/tellstick.py stop
-    restarts: ../PRE_DEV_ALPHA20/tellstick.py --stop;../PRE_DEV_ALPHA20/tellstick.py --start
-    status: ../PRE_DEV_ALPHA20/tellstick.py --status
+    restarts: ../PRE_DEV_ALPHA20/tellstick.py stop;../PRE_DEV_ALPHA20/tellstick.py start
+    status: ../PRE_DEV_ALPHA20/tellstick.py status
     config: ../etc/nonestellstick.config
     pidfil: /tmp/motion/tellstick.pid
     ctrl: ../bin/nonestellstickctrl.py
@@ -301,11 +309,12 @@ module_template:
     # Recv mqtt topic for deamon
     mqtttopic: fromalpha/chatbot
     # If deamon is running local with alpha. tty is used for output from deamon
+    # If deamon is running on remote host, disable tty -> False
     enable_tty: False
     starts: ../PRE_DEV_ALPHA20/chatbot.py start
     stopps: ../PRE_DEV_ALPHA20/chatbot.py stop
-    restarts: ../PRE_DEV_ALPHA20/chatbot.py --stop;../PRE_DEV_ALPHA20/chatbot.py --start
-    status: ../PRE_DEV_ALPHA20/chatbot.py --status
+    restarts: ../PRE_DEV_ALPHA20/chatbot.py stop;../PRE_DEV_ALPHA20/chatbot.py start
+    status: ../PRE_DEV_ALPHA20/chatbot.py status
     config: ../etc/nonechatbot.config
     pidfil: /tmp/motion/chatbot.pid
     ctrl: ../bin/nonechatbotctrl.py

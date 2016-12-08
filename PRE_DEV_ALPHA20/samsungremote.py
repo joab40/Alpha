@@ -6,6 +6,7 @@ import yaml
 import os,sys
 import logging
 from lockfile import LockTimeout
+from commands import *
 
 
 basepath = os.path.dirname(os.path.abspath(__file__))
@@ -44,9 +45,27 @@ def on_message(client, userdata, msg):
             client.disconnect()
             sys.exit(0)
         else:
-             logger.debug('on_message lets try to change channels on TV')
-             message = create_from_message(msg.payload, 'change tv channel', module_name)
-             client.publish(send_topic, message)
+            recived_msg = decode[yconfig[module_name]['mqttparam']]
+            send_msg = recived_msg
+            try:
+                remote_cmd = yconfig[module_name]['botresponsecmd'][recived_msg]
+            except KeyError,e:
+                logger.debug('on_message - None match for remote command [\033[0;31mFAILED\033[0m]: %s', recived_msg)
+            else:
+                logger.debug('on_message - Found match on message [\033[0;32mOK\033[0m]: %s ', recived_msg)
+                status, text = getstatusoutput(remote_cmd)
+                if status == 0:
+                    logger.debug('on_message - executed [\033[0;32mOK\033[0m]: %s ',remote_cmd)
+                    send_msg = recived_msg + ' nu'
+                else:
+                    logger.debug('on_message - executed [\033[0;31mFAILED\033[0m]: %s ', remote_cmd)
+                    send_msg = recived_msg + ' misslyckades'
+            if send_msg == recived_msg:
+                send_message = msg.payload
+            else:
+                send_message = create_from_message(msg.payload,send_msg,module_name)
+
+            client.publish(send_topic, send_message)
 
 class module():
     def __init__(self):
